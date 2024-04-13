@@ -18,7 +18,7 @@ ThemeData getApplicationTheme() {
       // App bar theme
       appBarTheme: AppBarTheme(
           centerTitle: true,
-          color: Colors.blue,
+          color: Colors.black,
           elevation: AppSize.s4,
           shadowColor: Colors.blue.withOpacity(0.7),
           titleTextStyle: getRegularStyle(
@@ -28,8 +28,8 @@ ThemeData getApplicationTheme() {
       buttonTheme: ButtonThemeData(
           shape: const StadiumBorder(),
           disabledColor: ColorManager.grey,
-          buttonColor: ColorManager.primary,
-          splashColor: ColorManager.primaryOpacity70),
+          buttonColor: ColorManager.white,
+          splashColor: ColorManager.white),
 
       // elevated button theme
       elevatedButtonTheme: ElevatedButtonThemeData(

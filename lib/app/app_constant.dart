@@ -1,5 +1,6 @@
 class AppConstant {
-  static const String project = "Hive Demo";
+  static const String project = "Books Library";
 
-  static const String employeeBox = "employee";
+  static String userName = 'yashsuthar';
+  static String alwaysReadBook = 'people/$userName/books/already-read.json';
 }

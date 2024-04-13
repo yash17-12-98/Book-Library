@@ -1,8 +1,7 @@
 import 'package:get/get.dart';
 
 class BaseController extends GetxController {
-  @override
-  void onInit() {
-    super.onInit();
-  }
+  Rx<AppState> appState = AppState.initial.obs;
 }
+
+enum AppState { initial, loading, complete }
