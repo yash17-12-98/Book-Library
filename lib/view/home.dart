@@ -1,6 +1,5 @@
 import 'package:book_library/app/app_constant.dart';
-import 'package:book_library/controller/base_controller.dart';
-import 'package:book_library/resources/color_manager.dart';
+import 'package:book_library/app/enum.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -103,27 +102,47 @@ class Home extends GetView<HomeController> {
                                   Center(
                                       child: SizedBox(
                                     width: double.infinity,
-                                    child: TextButton(
-                                        style: ButtonStyle(
-                                            shape: MaterialStateProperty.all(
-                                                RoundedRectangleBorder(
-                                                    side: const BorderSide(
-                                                      color: Colors.black,
-                                                      // your color here
-                                                      width: 1,
-                                                    ),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            10))),
-                                            backgroundColor:
-                                                MaterialStateProperty.all(
-                                                    Colors.red)),
-                                        onPressed: () {},
-                                        child: Text(
-                                          'Read',
-                                          style: TextStyle(
-                                              color: ColorManager.white),
-                                        )),
+                                    child: Obx(
+                                      () => TextButton(
+                                          style: ButtonStyle(
+                                              shape: MaterialStateProperty.all(
+                                                  RoundedRectangleBorder(
+                                                      side: controller
+                                                                  .books[index]
+                                                                  .bookStatus
+                                                                  .value ==
+                                                              BookStatus.unread
+                                                          ? const BorderSide(
+                                                              color:
+                                                                  Colors.black,
+                                                              width: 1,
+                                                            )
+                                                          : BorderSide.none,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10))),
+                                              backgroundColor:
+                                                  MaterialStateProperty.all(
+                                                      controller
+                                                                  .books[index]
+                                                                  .bookStatus
+                                                                  .value ==
+                                                              BookStatus.unread
+                                                          ? Colors.transparent
+                                                          : Colors.green)),
+                                          onPressed: () =>
+                                              controller.toggleStatus(index),
+                                          child: Text(
+                                            controller.books[index].bookStatus
+                                                .value.status,
+                                            style: TextStyle(
+                                                color: controller.books[index]
+                                                            .bookStatus.value ==
+                                                        BookStatus.unread
+                                                    ? Colors.black
+                                                    : Colors.white),
+                                          )),
+                                    ),
                                   )),
                                 ],
                               ),
@@ -136,7 +155,7 @@ class Home extends GetView<HomeController> {
                     // Set the grid view to shrink wrap its contents.
                     shrinkWrap: true,
                   )
-                : const Text('No data found'),
+                : const Text('No book found'),
       ),
     );
   }

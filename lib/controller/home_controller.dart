@@ -1,4 +1,5 @@
 import 'package:book_library/app/app_constant.dart';
+import 'package:book_library/app/enum.dart';
 import 'package:book_library/app/extensions.dart';
 import 'package:get/get.dart';
 
@@ -19,6 +20,15 @@ class HomeController extends BaseController {
   void onInit() {
     fetchBookFromAPi();
     super.onInit();
+  }
+
+  toggleStatus(index) {
+    if (books[index].bookStatus.value == BookStatus.read) {
+      books[index].bookStatus.value = BookStatus.unread;
+    } else {
+      books[index].bookStatus.value = BookStatus.read;
+    }
+    update();
   }
 
   fetchBookFromAPi() async {

@@ -1,3 +1,6 @@
+import 'package:book_library/app/enum.dart';
+import 'package:get/get.dart';
+
 class Books {
   String? title;
   String? key;
@@ -6,6 +9,7 @@ class Books {
   int? firstPublishYear;
   List<String>? editionKey;
   int? coverId;
+  Rx<BookStatus> bookStatus = BookStatus.unread.obs;
 
   Books(
       {this.title,
